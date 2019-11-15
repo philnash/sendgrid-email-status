@@ -10,6 +10,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_attributes)
     if @message.save
+      MessageMailer.with(message: @message).email.deliver_now
       redirect_to root_path
     else
       render :new
