@@ -1,24 +1,42 @@
-# README
+# 📧 SendGrid Email Status
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Rails application that sends emails via the SendGrid API and tracks their status.
 
-Things you may want to cover:
+## Running the application
 
-* Ruby version
+### Requirements
 
-* System dependencies
+You will need:
 
-* Configuration
+* Ruby (2.5.0 or newer) and Bundler
+* [ngrok](https://ngrok.com) - to tunnel webhooks through to your local machine
+* A Twilio SendGrid account (if you don't have one, you can [sign up for a free SendGrid account now](https://signup.sendgrid.com/))
 
-* Database creation
+### Getting started
 
-* Database initialization
+Clone the application:
 
-* How to run the test suite
+```bash
+git clone https://github.com/philnash/sendgrid-email-status.git
+cd sendgrid-email-status
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Install the dependencies:
 
-* Deployment instructions
+```bash
+bundle install
+```
 
-* ...
+Copy the `config/env.yml.example` file to `config/env.yml`. Then fill in the `config/env.yml` with an email address you want to use to send emails and a SendGrid API key that can send email.
+
+```bash
+cp config/env.yml.example config/env.yml
+```
+
+Start the application:
+
+```bash
+bundle exec rails server
+```
+
+Visit the application at [http://localhost:3000](http://localhost:3000).
