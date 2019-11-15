@@ -1,2 +1,30 @@
-<h1>Messages#new</h1>
-<p>Find me in app/views/messages/new.html.erb</p>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h1 class="h2">New Message</h1>
+</div>
+
+<% if @message.errors.full_messages.any? %>
+  <div class="alert alert-danger">
+    <h2 class="h6"><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+    <ul>
+      <% @message.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @message, :local => true do |f| %>
+  <div class="form-group">
+    <%= f.label :to %>
+    <%= f.email_field :to, :class => "form-control#{ ' is-invalid' if @message.errors[:to].any? }", :required => true %>
+  </div>
+  <div class="form-group">
+    <%= f.label :subject %>
+    <%= f.text_field :subject, :class => "form-control#{ ' is-invalid' if @message.errors[:subject].any? }", :required => true %>
+  </div>
+  <div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body, :class => "form-control#{ ' is-invalid' if @message.errors[:body].any? }", :required => true %>
+  </div>
+  <%= f.button "Send", :class => 'btn btn-primary' %>
+<% end %>

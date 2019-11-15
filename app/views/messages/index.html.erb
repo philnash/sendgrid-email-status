@@ -1,2 +1,34 @@
-<h1>Messages#index</h1>
-<p>Find me in app/views/messages/index.html.erb</p>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+  <h1 class="h2">Messages</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2">
+      <%= link_to 'New message', new_message_path, class: 'btn btn-sm btn-outline-secondary' %>
+    </div>
+  </div>
+</div>
+<div class="table-responsive">
+  <% if @messages.any? -%>
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Subject</th>
+          <th scope="col">Status</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @messages.each do |message| -%>
+          <tr>
+            <td><%= message.id %></td>
+            <td><%= message.subject %></td>
+            <td><%= status_badge(message.status) %></td>
+            <td><%= link_to "show", message_path(message) %></td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+  <% else -%>
+    <p>You haven't created any messages yet. <%= link_to 'Create your first message', new_message_path %>.</p>
+  <% end -%>
+</div>

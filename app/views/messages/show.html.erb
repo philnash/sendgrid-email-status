@@ -1,2 +1,14 @@
-<h1>Messages#show</h1>
-<p>Find me in app/views/messages/show.html.erb</p>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h1 class="h2">Message / <%= @message.id %></h1>
+</div>
+
+<dl>
+  <dt>To</dt>
+  <dd><%= @message.to %></dd>
+  <dt>Subject</dt>
+  <dd><%= @message.subject %></dd>
+  <dt>Body</dt>
+  <dd><%= simple_format @message.body %></dd>
+  <dt>Status</dt>
+  <dd><%= status_badge(@message.status) %></dd>
+</dl>
